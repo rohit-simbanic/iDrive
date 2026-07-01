@@ -1,0 +1,20 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# SCSS Cache and Source Maps
+.sass-cache/
+*.css.map
+.eslintcache
+
+# Operating System metadata
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Adobe XD vector design files & Raw mockup images
+Custom Size – 1.png
+IDrive.xd
+logo_extracted.xml
+sprite_icon.svg

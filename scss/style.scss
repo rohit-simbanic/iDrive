@@ -1,0 +1,1119 @@
+/* IDrive Style System */
+
+// ==========================================
+// Variables
+// ==========================================
+$font-sans: 'Open Sans', 'Inter', sans-serif;
+$font-header: 'Inter', 'Open Sans', sans-serif;
+
+// Brand & Layout Colors
+$color-sidebar-bg: #101230; // Very dark blue from XD
+$color-sidebar-active-bg: #1c204d; // Lighter dark blue for active states
+$color-sidebar-text: #9899a8; // Muted gray-blue
+$color-sidebar-title: #555b6d;
+$color-primary: #0071bc; // Bright blue button from XD
+$color-primary-hover: #0772ba; // Hover blue
+$color-accent: #3eabda; // Light blue / cyan active accent
+
+// UI Backgrounds
+$color-body-bg: #fbfcfd; // Very light gray-blue background
+$color-card-bg: #ffffff;
+$color-form-bg: #fcfdff; // Form card bg from XD
+$color-card-step1-bg: #fffbfb; // Step 1 soft red bg from XD
+$color-card-step2-bg: #fffef6; // Step 2 soft yellow bg from XD
+
+// Text Colors
+$color-text-dark: #22353f; // Primary text color from XD
+$color-text-muted: #707182; // Muted text color
+$color-text-white: #ffffff;
+
+// Borders & Dividers
+$color-border-light: #eef2f8; // Form fields border
+$color-border-dashed: rgba(112, 112, 112, 0.4); // Step card dashed border
+$color-divider: #ebebeb; // Divider line
+
+// Feedback Colors
+$color-error: #ef4341; // Error red
+$color-success: #8cddb6; // Success green
+
+// Border Radii
+$radius-large: 24px; // Rounded banner corners
+$radius-medium: 12px; // Card/form corners
+$radius-small: 6px; // Input corners
+
+// Transitions
+$transition-fast: 0.2s ease;
+$transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+// Gradients
+$gradient-banner: linear-gradient(105deg, #bcd7ec 0%, #f3defa 100%); // Soft pastel gradient matching screenshot
+
+// ==========================================
+// Base Resets & Typography
+// ==========================================
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: $font-sans;
+  background-color: $color-body-bg;
+  color: $color-text-dark;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-header;
+  font-weight: 600;
+  color: $color-text-dark;
+}
+
+a {
+  text-decoration: none;
+  color: $color-primary;
+  transition: color $transition-fast;
+  
+  &:hover {
+    color: $color-primary-hover;
+  }
+}
+
+button {
+  border: none;
+  background: none;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+// ==========================================
+// Layout Structure
+// ==========================================
+.dashboard-container {
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  background-color: #101230; // Dark blue behind curved corner in desktop view
+}
+
+.main-content {
+  flex-grow: 1;
+  min-width: 0;
+  height: 100%;
+  overflow-y: auto;
+  padding: 32px;
+  background-color: $color-card-bg; // White background color
+  border-top-left-radius: 40px; // Curved top-left corner in desktop
+  transition: padding $transition-normal;
+}
+
+.dashboard-canvas {
+  background-color: $color-card-bg; // White background
+  border-radius: 24px; // Rounded on all 4 corners
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08); // Box shadow on the main parent div
+  overflow: hidden; // Clips nested elements to rounded corners
+  display: flex;
+  flex-direction: column;
+  margin-top: 16px; // Space below header
+}
+
+// ==========================================
+// Sidebar Navigation (Collapsible)
+// ==========================================
+.sidebar {
+  width: 250px;
+  background-color: $color-sidebar-bg;
+  color: $color-sidebar-text;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  transition: width $transition-normal;
+  overflow: hidden;
+  z-index: 100;
+  
+  // Header section
+  .sidebar-header {
+    height: 80px;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    
+    .logo-link {
+      display: flex;
+      align-items: center;
+      width: 100px;
+      height: 35px;
+      transition: opacity $transition-fast;
+      
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+    
+    .logo-svg {
+      width: 100%;
+      height: 100%;
+      fill: $color-text-white;
+    }
+    
+    .sidebar-toggle {
+      color: $color-sidebar-text;
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 4px;
+      transition: color $transition-fast, background-color $transition-fast;
+      
+      &:hover {
+        color: $color-text-white;
+        background-color: rgba(255, 255, 255, 0.05);
+      }
+      
+      .hamburger-svg {
+        width: 21px;
+        height: 14px;
+        fill: currentColor;
+      }
+    }
+  }
+
+  .sidebar-nav {
+    flex-grow: 1;
+    padding: 24px 0;
+    overflow-y: auto;
+    
+    // Hide scrollbar for Chrome, Safari and Opera
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    
+    // Hide scrollbar for IE, Edge and Firefox
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    
+    .nav-list {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      
+      // Dropdown button / link
+      .nav-link {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 24px;
+        color: $color-sidebar-text;
+        width: 100%;
+        text-align: left;
+        font-family: $font-header;
+        font-weight: 600;
+        font-size: 13px;
+        letter-spacing: 0.5px;
+        transition: color $transition-fast, background-color $transition-fast;
+        
+        .nav-link-text {
+          transition: opacity $transition-fast;
+        }
+
+        .chevron-icon {
+          width: 8px;
+          height: 4px;
+          fill: none;
+          stroke: currentColor;
+          stroke-width: 2px;
+          transition: transform $transition-fast, opacity $transition-fast;
+        }
+        
+        &:hover {
+          color: $color-text-white;
+          background-color: rgba(255, 255, 255, 0.02);
+        }
+      }
+      
+      // Active link state
+      &.active > .nav-link {
+        color: $color-text-white;
+      }
+      
+      // Dropdown content (Accordion menu list)
+      .sub-nav-list {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height $transition-normal;
+        background-color: rgba(0, 0, 0, 0.15);
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      
+      &.open .sub-nav-list {
+        max-height: 150px; // Dynamic expansion height limit
+      }
+      
+      .sub-nav-link {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 24px 10px 36px;
+        color: $color-sidebar-text;
+        font-size: 13px;
+        position: relative;
+        transition: color $transition-fast, background-color $transition-fast;
+        
+        .cloud-icon {
+          width: 17px;
+          height: 12px;
+          flex-shrink: 0;
+          
+          .arrow-fill {
+            fill: currentColor;
+            stroke: currentColor;
+            stroke-width: 0.5px;
+          }
+          
+          .arrow-stroke {
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2px;
+            stroke-linecap: round;
+            stroke-miterlimit: 10;
+          }
+        }
+        
+        &:hover {
+          color: $color-text-white;
+        }
+        
+        &.active {
+          color: $color-text-white;
+          background-color: transparent; // No background highlight, matching attachment
+          font-weight: 600; // Bold text
+          
+          &::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background-color: #ffffff; // Solid white indicator on the left edge
+          }
+        }
+      }
+    }
+  }
+
+  // Sidebar Footer/Products
+  .sidebar-products {
+    padding: 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    
+    .products-title {
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: $color-sidebar-title;
+      margin-bottom: 12px;
+      font-weight: 700;
+      transition: opacity $transition-fast;
+    }
+    
+    .products-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    
+    .product-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: $color-sidebar-text;
+      font-size: 13px;
+      transition: color $transition-fast;
+      
+      .help-icon {
+        width: 14px;
+        height: 14px;
+        fill: currentColor;
+        opacity: 0.5;
+        transition: opacity $transition-fast, transform $transition-fast;
+      }
+      
+      &:hover {
+        color: $color-text-white;
+        
+        .help-icon {
+          opacity: 0.9;
+          transform: scale(1.1);
+        }
+      }
+    }
+    
+    .sidebar-footer {
+      margin-top: 24px;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.2);
+      letter-spacing: 0.5px;
+      text-align: center; // Centered text
+      transition: opacity $transition-fast;
+      
+      sup {
+        font-size: 8px;
+      }
+    }
+  }
+  
+  // Collapsed Sidebar Styles
+  &.collapsed {
+    width: 70px;
+    
+    .sidebar-header {
+      justify-content: center;
+      .logo-link {
+        display: none;
+      }
+    }
+    
+    .sidebar-nav {
+      .nav-link {
+        justify-content: center;
+        padding: 12px;
+        
+        .nav-link-text, .chevron-icon {
+          display: none;
+        }
+      }
+      .sub-nav-list {
+        display: none !important; // Hide dropdowns entirely when collapsed
+      }
+    }
+    
+    .sidebar-products {
+      padding: 16px 8px;
+      align-items: center;
+      
+      .products-title, .product-link span, .sidebar-footer {
+        display: none;
+      }
+      
+      .products-list {
+        align-items: center;
+      }
+      
+      .product-link {
+        justify-content: center;
+        .help-icon {
+          opacity: 0.7;
+        }
+      }
+    }
+  }
+}
+
+// ==========================================
+// Main Header
+// ==========================================
+.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  height: 60px;
+  
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .mobile-sidebar-toggle {
+    display: none; // Hidden on desktop
+  }
+  
+  .page-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: $color-text-dark;
+  }
+  
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .header-action-btn {
+    color: $color-text-muted;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    transition: background-color $transition-fast, color $transition-fast;
+    
+    .header-icon-svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+    
+    &.bell-btn {
+      .header-icon-svg {
+        fill: $color-text-muted;
+      }
+    }
+    
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.04);
+      color: $color-text-dark;
+    }
+    
+    .notification-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      width: 8px;
+      height: 8px;
+      background-color: $color-error;
+      border-radius: 50%;
+      border: 1.5px solid $color-body-bg;
+    }
+  }
+  
+  .user-avatar {
+    width: 36px;
+    height: 36px;
+    background-color: #dd7e4d; // Warm coral tone from XD
+    color: $color-text-white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-family: $font-header;
+    font-size: 15px;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(221, 126, 77, 0.3);
+    transition: transform $transition-fast, box-shadow $transition-fast;
+    
+    &:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 12px rgba(221, 126, 77, 0.45);
+    }
+  }
+}
+
+// ==========================================
+// Welcome Banner
+// ==========================================
+.welcome-banner {
+  background: $gradient-banner;
+  border-radius: 24px 24px 0 0; // Curved only on top-left and top-right, flat bottom
+  overflow: hidden;
+  margin-bottom: 0; // Seamless attachment to column layout below
+  
+  .banner-body {
+    padding: 36px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 40px;
+    position: relative;
+  }
+  
+  .banner-text {
+    color: $color-text-dark;
+    max-width: 60%;
+    
+    h2 {
+      font-size: 32px;
+      font-weight: 600;
+      color: $color-text-dark;
+      margin-bottom: 8px;
+    }
+    
+    p {
+      font-size: 15px;
+      color: #3f525c;
+    }
+  }
+  
+  .banner-graphic {
+    width: 232px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    
+    .box-illustration-svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+// ==========================================
+// Main Content Grid (Columns)
+// ==========================================
+.content-columns-wrapper {
+  display: flex;
+  gap: 0; // Remove gaps for seamless background split
+  align-items: stretch; // Stretch columns to match heights
+  border-top: 1px solid $color-divider; // Divider line below welcome banner
+}
+
+.left-instructions-column {
+  flex: 7; // Generous space for step cards
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px; // Padding on all sides
+}
+
+.download-instruction-text {
+  font-size: 15px;
+  color: $color-text-dark;
+  
+  .accent-link {
+    font-weight: 600;
+    color: $color-primary;
+    border-bottom: 1.5px solid transparent;
+    
+    &:hover {
+      border-bottom-color: currentColor;
+    }
+  }
+}
+
+.steps-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+// Step Cards
+.step-card {
+  border-radius: $radius-medium;
+  padding: 32px 24px 24px 24px;
+  position: relative;
+  border: 1.5px dashed $color-border-dashed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  transition: transform $transition-fast;
+  
+  &.card-bg-red {
+    background-color: #fffcfc; // Faint pink background
+  }
+  
+  &.card-bg-yellow {
+    background-color: #fffdf2; // Faint cream background
+  }
+  
+  .step-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 26px;
+    height: 26px;
+    background-color: $color-card-bg;
+    color: $color-primary;
+    border: 1px solid rgba(112, 112, 112, 0.25);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-family: $font-header;
+    font-size: 13px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .step-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: $color-text-dark;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 4px;
+  }
+  
+  .step-card-graphic-wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    .step-illust-svg {
+      max-width: 100%;
+      max-height: 180px;
+    }
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+// Divider
+.content-vertical-divider {
+  width: 1px;
+  background-color: $color-divider;
+  align-self: stretch;
+}
+
+// ==========================================
+// Right Column: Form Container
+// ==========================================
+.right-form-column {
+  flex: 5; // Form column width
+  padding: 32px 42px; // Padding around form elements
+  background-color: #fcfdff; // Soft background color for Add User section
+  
+  .form-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: $color-text-dark;
+    margin-bottom: 24px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    
+    .form-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: $color-text-dark;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+      
+      .required-indicator {
+        color: $color-error;
+      }
+    }
+    
+    .form-input {
+      font-family: inherit;
+      width: 100%;
+      height: 40px;
+      border: 1.5px solid $color-border-light;
+      background-color: $color-card-bg;
+      border-radius: $radius-small;
+      padding: 0 16px;
+      font-size: 13.5px;
+      color: $color-text-dark;
+      outline: none;
+      transition: border-color $transition-fast, box-shadow $transition-fast;
+      
+      &::placeholder {
+        color: #b7b7c2;
+      }
+      
+      &:focus {
+        border-color: $color-primary;
+        box-shadow: 0 0 0 3px rgba(0, 113, 188, 0.08);
+      }
+    }
+    
+    .password-input-wrapper {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      
+      .form-input {
+        padding-right: 48px; // Leave room for visibility button
+      }
+      
+      .password-toggle-btn {
+        position: absolute;
+        right: 12px;
+        background: none;
+        border: none;
+        padding: 4px;
+        color: $color-text-muted;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: color $transition-fast;
+        z-index: 2;
+        
+        &:hover {
+          color: $color-primary;
+        }
+        
+        .eye-icon {
+          width: 20px;
+          height: 20px;
+          display: block;
+        }
+      }
+    }
+    
+    // Error styling block
+    .field-error-message {
+      font-size: 12px;
+      color: $color-error;
+      margin-top: 6px;
+      display: none;
+      font-weight: 500;
+      align-items: center;
+      gap: 4px;
+      transition: opacity $transition-fast;
+    }
+    
+    // Invalid validation state
+    &.invalid {
+      .form-input {
+        border-color: $color-error;
+        background-color: rgba(239, 67, 65, 0.02);
+        
+        &:focus {
+          box-shadow: 0 0 0 3px rgba(239, 67, 65, 0.1);
+        }
+      }
+      
+      .field-error-message {
+        display: flex;
+        animation: slideDown $transition-fast forwards;
+      }
+    }
+  }
+}
+
+// Validation animation
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Buttons
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  height: 40px;
+  border-radius: $radius-small;
+  font-family: $font-header;
+  font-weight: 600;
+  font-size: 13.5px;
+  transition: background-color $transition-fast, transform $transition-fast, box-shadow $transition-fast;
+  
+  &-primary {
+    background-color: $color-primary;
+    color: $color-text-white;
+    box-shadow: 0 2px 8px rgba(0, 113, 188, 0.2);
+    
+    &:hover {
+      background-color: $color-primary-hover;
+      box-shadow: 0 4px 12px rgba(0, 113, 188, 0.35);
+    }
+    
+    &:active {
+      transform: translateY(1px);
+    }
+  }
+}
+
+.form-submit-group {
+  margin-top: 8px;
+  display: flex;
+  justify-content: flex-start;
+  
+  .btn {
+    width: auto; // Auto width to fit text, left-aligned
+  }
+}
+
+// ==========================================
+// Success Notification Toast
+// ==========================================
+.notification-toast {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  background-color: $color-card-bg;
+  border: 1px solid rgba(140, 221, 182, 0.3);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  border-radius: $radius-medium;
+  padding: 16px 24px;
+  min-width: 320px;
+  transition: top 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  
+  &.show {
+    top: 24px;
+  }
+  
+  .notification-content {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  
+  .success-icon {
+    width: 24px;
+    height: 24px;
+    color: $color-success;
+    flex-shrink: 0;
+  }
+  
+  .notification-text {
+    h4 {
+      font-size: 14.5px;
+      font-weight: 600;
+      color: $color-text-dark;
+      margin-bottom: 2px;
+    }
+    p {
+      font-size: 12.5px;
+      color: $color-text-muted;
+    }
+  }
+}
+
+// ==========================================
+// Responsive Layout Adjustments
+// ==========================================
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99;
+}
+
+@media (max-width: 1200px) {
+  .welcome-banner {
+    .banner-body {
+      padding: 28px 36px;
+    }
+    .banner-text h2 {
+      font-size: 26px;
+    }
+  }
+  
+  .steps-container {
+    grid-template-columns: 1fr; // Stack step cards vertically on tablets/medium views
+  }
+}
+
+@media (max-width: 992px) {
+  // Collapse sidebar to icon-only state when collapsed on tablets
+  .sidebar.collapsed {
+    width: 70px;
+    
+    .sidebar-header {
+      justify-content: center;
+      .logo-link {
+        display: none;
+      }
+    }
+    
+    .sidebar-nav {
+      .nav-link {
+        justify-content: center;
+        padding: 12px;
+        
+        .nav-link-text, .chevron-icon {
+          display: none;
+        }
+      }
+      .sub-nav-list {
+        display: none !important;
+      }
+    }
+    
+    .sidebar-products {
+      padding: 16px 8px;
+      
+      .products-title, .product-link span, .sidebar-footer {
+        display: none;
+      }
+      .products-list {
+        align-items: center;
+      }
+      .product-link {
+        justify-content: center;
+      }
+    }
+  }
+  
+  // main-content max-width is handled automatically by flex-grow & min-width
+}
+
+@media (max-width: 768px) {
+  .dashboard-container {
+    position: relative;
+    background-color: #ffffff; // White background on mobile view
+  }
+  
+  // Slide-out Drawer Sidebar on Mobile
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    bottom: 0;
+    width: 250px !important;
+    transition: left $transition-normal;
+    z-index: 100;
+    
+    .sidebar-header .logo-link {
+      display: flex !important;
+    }
+    
+    .sidebar-nav {
+      .nav-link {
+        justify-content: space-between !important;
+        padding: 12px 24px !important;
+        
+        .nav-link-text, .chevron-icon {
+          display: inline !important;
+        }
+      }
+      
+      .sub-nav-list {
+        display: flex !important; // Override display: none !important from tablet collapsed state
+      }
+    }
+    
+    .sidebar-products {
+      padding: 24px !important;
+      
+      .products-title, .product-link span, .sidebar-footer {
+        display: inline !important;
+      }
+      .products-list {
+        align-items: stretch !important;
+      }
+      .product-link {
+        justify-content: space-between !important;
+      }
+    }
+    
+    &.open {
+      left: 0;
+    }
+    
+    &.collapsed {
+      left: -250px; // Reset collapsed off-canvas width
+    }
+  }
+  
+  .sidebar-overlay.open {
+    display: block;
+  }
+  
+  .main-content {
+    padding: 20px;
+    border-radius: 0; // Flat layout on mobile screens
+  }
+  
+
+  .main-header {
+    .mobile-sidebar-toggle {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: $color-text-muted;
+      padding: 8px;
+      border-radius: 4px;
+      margin-left: -8px;
+      flex-shrink: 0; // Prevent flexbox from crushing the toggle width
+      position: relative;
+      z-index: 10; // Ensure it stays on top of adjacent headers
+      cursor: pointer;
+      
+      .hamburger-svg {
+        width: 21px;
+        height: 14px;
+        fill: currentColor;
+      }
+    }
+    
+    .page-title {
+      font-size: 20px;
+    }
+  }
+  
+  .welcome-banner {
+    .banner-body {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 24px;
+    }
+    .banner-text {
+      max-width: 100%;
+      h2 {
+        font-size: 22px;
+      }
+      p {
+        font-size: 14px;
+      }
+    }
+    .banner-graphic {
+      align-self: center;
+      width: 160px;
+      height: auto;
+    }
+  }
+  
+  .content-columns-wrapper {
+    flex-direction: column;
+    gap: 32px;
+  }
+  
+  .content-vertical-divider {
+    display: none; // Hide vertical divider on mobile layout
+  }
+  
+  .left-instructions-column, .right-form-column {
+    width: 100%;
+  }
+  
+  .right-form-column {
+    position: static;
+    padding: 20px;
+  }
+}

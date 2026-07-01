@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IDrive Cloud Backup - Dashboard</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <!-- SCSS Output Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  <!-- SVG Sprite Loader -->
+  <script src="js/sprite.js"></script>
+</head>
+<body>
+
+  <!-- Success Notification Modal/Toast -->
+  <div id="success-notification" class="notification-toast">
+    <div class="notification-content">
+      <svg class="success-icon" viewBox="0 0 24 24">
+        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" fill="currentColor"/>
+      </svg>
+      <div class="notification-text">
+        <h4>Success!</h4>
+        <p>User account has been successfully created.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="dashboard-container">
+    
+    <!-- Collapsible Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <a href="#" class="logo-link" aria-label="IDrive Home">
+          <!-- Logo referenced from SVG Sprite -->
+          <svg class="logo-svg" viewBox="7.99 4.64 93.61 35.38">
+            <use href="#Group_7"></use>
+          </svg>
+        </a>
+        <button class="sidebar-toggle" id="sidebar-toggle" aria-label="Toggle Sidebar">
+          <!-- Hamburger menu referenced from SVG Sprite -->
+          <svg class="hamburger-svg" viewBox="7.99 84.33 21 14">
+            <use href="#Path_50"></use>
+          </svg>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav">
+        <ul class="nav-list">
+          
+          <!-- Nav Item with Dropdown (Backup) -->
+          <li class="nav-item">
+            <button class="nav-link dropdown-trigger" aria-expanded="false">
+              <span class="nav-link-text">BACKUP</span>
+              <svg class="chevron-icon" viewBox="7.99 158.14 7.93 3.99">
+                <use href="#Path_3121"></use>
+              </svg>
+            </button>
+            <ul class="sub-nav-list">
+              <li><a href="#" class="sub-nav-link">Backup Files</a></li>
+              <li><a href="#" class="sub-nav-link">Schedule Backup</a></li>
+              <li><a href="#" class="sub-nav-link">Restore</a></li>
+            </ul>
+          </li>
+
+          <!-- Active Nav Item with Dropdown (Sync) -->
+          <li class="nav-item active open">
+            <button class="nav-link dropdown-trigger" aria-expanded="true">
+              <span class="nav-link-text">SYNC</span>
+              <svg class="chevron-icon" viewBox="7.99 226.95 7.93 3.99">
+                <use href="#Path_312"></use>
+              </svg>
+            </button>
+            <ul class="sub-nav-list">
+              <li>
+                <a href="#" class="sub-nav-link active">
+                  <!-- Circular sync arrows icon inline SVG -->
+                  <svg class="cloud-icon" viewBox="7.96 291.98 17.42 11.55">
+                    <g id="Group_426">
+                      <path class="arrow-fill" d="M13.669,298l-2.631-2.628c-.094-.082-.235-.082-.329,0l-2.63,2.628c-.101.078-.119.222-.042.323.049.063.127.097.206.088h5.179c.329,0,.411-.246.246-.411" />
+                      <path class="arrow-fill" d="M19.669,297.51l2.631,2.631c.094.082.235.082.329,0l2.631-2.631c.101-.078.119-.222.042-.323-.049-.063-.127-.097-.206-.088h-5.263c-.126-.013-.239.079-.252.205-.008.079.025.157.088.206" />
+                      <path class="arrow-stroke" d="M19.998,302.441c-.956.694-2.107,1.069-3.288,1.071-3.158.019-5.735-2.525-5.754-5.684,0-.024,0-.048,0-.072" />
+                      <path class="arrow-stroke" d="M13.422,293.071c.956-.693,2.107-1.067,3.288-1.069,3.158-.019,5.735,2.525,5.754,5.684,0,.023,0,.047,0,.07" />
+                    </g>
+                  </svg>
+                  <span class="sub-nav-text">Cloud Drive</span>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <!-- Nav Item with Dropdown (Trash) -->
+          <li class="nav-item">
+            <button class="nav-link dropdown-trigger" aria-expanded="false">
+              <span class="nav-link-text">TRASH</span>
+              <svg class="chevron-icon" viewBox="7.99 158.14 7.93 3.99">
+                <use href="#Path_3121"></use>
+              </svg>
+            </button>
+            <ul class="sub-nav-list">
+              <li><a href="#" class="sub-nav-link">View Trash</a></li>
+              <li><a href="#" class="sub-nav-link">Empty Trash</a></li>
+            </ul>
+          </li>
+
+          <!-- Nav Item with Dropdown (Utilities) -->
+          <li class="nav-item">
+            <button class="nav-link dropdown-trigger" aria-expanded="false">
+              <span class="nav-link-text">UTILITIES</span>
+              <svg class="chevron-icon" viewBox="7.99 158.14 7.93 3.99">
+                <use href="#Path_3121"></use>
+              </svg>
+            </button>
+            <ul class="sub-nav-list">
+              <li><a href="#" class="sub-nav-link">Logs</a></li>
+              <li><a href="#" class="sub-nav-link">Bandwidth Tester</a></li>
+            </ul>
+          </li>
+
+          <!-- Nav Item with Dropdown (Account) -->
+          <li class="nav-item">
+            <button class="nav-link dropdown-trigger" aria-expanded="false">
+              <span class="nav-link-text">ACCOUNT</span>
+              <svg class="chevron-icon" viewBox="7.99 158.14 7.93 3.99">
+                <use href="#Path_3121"></use>
+              </svg>
+            </button>
+            <ul class="sub-nav-list">
+              <li><a href="#" class="sub-nav-link">Profile Details</a></li>
+              <li><a href="#" class="sub-nav-link">Billing & Storage</a></li>
+              <li><a href="#" class="sub-nav-link">Sign Out</a></li>
+            </ul>
+          </li>
+
+        </ul>
+      </nav>
+
+      <!-- Products & Footer section -->
+      <div class="sidebar-products">
+        <h4 class="products-title">PRODUCTS</h4>
+        <ul class="products-list">
+          <li>
+            <a href="#" class="product-link">
+              <span>IDrive e2</span>
+              <!-- Inline Question Mark SVG -->
+              <svg class="help-icon" viewBox="7.99 359.07 15.00 15.00">
+                <path d="M15.49,359.067c-4.142,0-7.5,3.358-7.5,7.5s3.358,7.5,7.5,7.5,7.5-3.358,7.5-7.5-3.358-7.5-7.5-7.5ZM16.163,370.067h-1.509v-1.51h1.509v1.51ZM17.927,365.319c-.188.297-.59.702-1.206,1.214-.319.265-.517.478-.593.64-.077.16-.112.449-.105.864h-1.37c-.003-.197-.005-.317-.005-.36,0-.443.073-.809.22-1.096.147-.286.44-.608.881-.967.44-.357.704-.592.79-.703.132-.176.199-.369.199-.58,0-.294-.117-.545-.352-.755-.235-.209-.551-.313-.948-.313-.383,0-.704.108-.961.327s-.435.552-.532.999l-1.386-.172c.04-.641.312-1.186.819-1.633.506-.447,1.171-.672,1.995-.672.867,0,1.556.227,2.068.68s.768.98.768,1.582c0,.333-.094.648-.282.945Z" fill="currentColor"/>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="product-link">
+              <span>RemotePC&trade;</span>
+              <svg class="help-icon" viewBox="7.99 359.07 15.00 15.00">
+                <path d="M15.49,359.067c-4.142,0-7.5,3.358-7.5,7.5s3.358,7.5,7.5,7.5,7.5-3.358,7.5-7.5-3.358-7.5-7.5-7.5ZM16.163,370.067h-1.509v-1.51h1.509v1.51ZM17.927,365.319c-.188.297-.59.702-1.206,1.214-.319.265-.517.478-.593.64-.077.16-.112.449-.105.864h-1.37c-.003-.197-.005-.317-.005-.36,0-.443.073-.809.22-1.096.147-.286.44-.608.881-.967.44-.357.704-.592.79-.703.132-.176.199-.369.199-.58,0-.294-.117-.545-.352-.755-.235-.209-.551-.313-.948-.313-.383,0-.704.108-.961.327s-.435.552-.532.999l-1.386-.172c.04-.641.312-1.186.819-1.633.506-.447,1.171-.672,1.995-.672.867,0,1.556.227,2.068.68s.768.98.768,1.582c0,.333-.094.648-.282.945Z" fill="currentColor"/>
+              </svg>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="product-link">
+              <span>HelpDesk</span>
+              <svg class="help-icon" viewBox="7.99 359.07 15.00 15.00">
+                <path d="M15.49,359.067c-4.142,0-7.5,3.358-7.5,7.5s3.358,7.5,7.5,7.5,7.5-3.358,7.5-7.5-3.358-7.5-7.5-7.5ZM16.163,370.067h-1.509v-1.51h1.509v1.51ZM17.927,365.319c-.188.297-.59.702-1.206,1.214-.319.265-.517.478-.593.64-.077.16-.112.449-.105.864h-1.37c-.003-.197-.005-.317-.005-.36,0-.443.073-.809.22-1.096.147-.286.44-.608.881-.967.44-.357.704-.592.79-.703.132-.176.199-.369.199-.58,0-.294-.117-.545-.352-.755-.235-.209-.551-.313-.948-.313-.383,0-.704.108-.961.327s-.435.552-.532.999l-1.386-.172c.04-.641.312-1.186.819-1.633.506-.447,1.171-.672,1.995-.672.867,0,1.556.227,2.068.68s.768.98.768,1.582c0,.333-.094.648-.282.945Z" fill="currentColor"/>
+              </svg>
+            </a>
+          </li>
+        </ul>
+        <div class="sidebar-footer">
+          <p>IDrive<sup>&reg;</sup> inc</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      
+      <!-- Main Header -->
+      <header class="main-header">
+        <div class="header-left">
+          <!-- Mobile Sidebar Toggle -->
+          <button class="mobile-sidebar-toggle" id="mobile-sidebar-toggle" aria-label="Open Sidebar Menu">
+            <svg class="hamburger-svg" viewBox="7.99 84.33 21 14">
+              <use href="#Path_50"></use>
+            </svg>
+          </button>
+          <h1 class="page-title">Cloud Backup</h1>
+        </div>
+        <div class="header-right">
+          <!-- Notification Bell -->
+          <button class="header-action-btn" aria-label="Notifications">
+            <svg class="header-icon-svg bell-icon" viewBox="7.99 423.88 20.00 23.00">
+              <use href="#Path_355"></use>
+            </svg>
+          </button>
+          
+          <!-- Settings Gear -->
+          <button class="header-action-btn" aria-label="Settings">
+            <svg class="header-icon-svg gear-icon" viewBox="13.16 493.67 20.03 21.02">
+              <use href="#Group_494"></use>
+            </svg>
+          </button>
+          
+          <!-- User Avatar -->
+          <div class="user-avatar" title="User Profile">
+            <span>C</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Dashboard Canvas Parent Container -->
+      <div class="dashboard-canvas">
+        
+        <!-- Welcome Banner -->
+        <section class="welcome-banner">
+          <div class="banner-body">
+            <div class="banner-graphic">
+              <!-- Box Illustration referenced from SVG Sprite -->
+              <svg class="box-illustration-svg" viewBox="13.19 1297.06 232.03 173.5">
+                <use href="#Group_1767"></use>
+              </svg>
+            </div>
+            <div class="banner-text">
+              <h2>Welcome to IDrive</h2>
+              <p>Your IDrive account has been successfully created.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- Two-Column Content Layout -->
+        <div class="content-columns-wrapper">
+          
+          <!-- Left Column: Instructions -->
+          <div class="left-instructions-column">
+            <p class="download-instruction-text">
+              IDrive download should start in a moment. If your download does not begin, <a href="#" class="accent-link">click here</a>
+            </p>
+
+            <div class="steps-container">
+              <!-- Step 1 Card -->
+              <div class="step-card card-bg-red">
+                <div class="step-badge">1</div>
+                <h3 class="step-title">Install IDrive</h3>
+                <div class="step-card-graphic-wrapper">
+                  <!-- Step 1 illustration referenced from SVG Sprite -->
+                  <svg class="step-illust-svg" viewBox="20.19 657.46 288.41 191.17">
+                    <use href="#Group_1688"></use>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Step 2 Card -->
+              <div class="step-card card-bg-yellow">
+                <div class="step-badge">2</div>
+                <h3 class="step-title">Follow the instruction</h3>
+                <div class="step-card-graphic-wrapper">
+                  <!-- Step 2 illustration referenced from SVG Sprite -->
+                  <svg class="step-illust-svg" viewBox="19.29 930.84 291.43 214.06">
+                    <use href="#Group_1745"></use>
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Vertical Divider Line (Hidden on Mobile) -->
+          <div class="content-vertical-divider"></div>
+
+          <!-- Right Column: Add User Form -->
+          <div class="right-form-column">
+            <div class="form-container">
+              <h2 class="form-title">Add User</h2>
+              
+              <form id="add-user-form" novalidate>
+                
+                <!-- First Name -->
+                <div class="form-group" id="group-first-name">
+                  <label for="first-name" class="form-label">First Name<span class="required-indicator">*</span></label>
+                  <input type="text" id="first-name" name="firstName" class="form-input" placeholder="Enter first name" required>
+                  <span class="field-error-message" id="error-first-name">This field is required.</span>
+                </div>
+
+                <!-- Last Name -->
+                <div class="form-group" id="group-last-name">
+                  <label for="last-name" class="form-label">Last Name<span class="required-indicator">*</span></label>
+                  <input type="text" id="last-name" name="lastName" class="form-input" placeholder="Enter last name" required>
+                  <span class="field-error-message" id="error-last-name">This field is required.</span>
+                </div>
+
+                <!-- Email Address -->
+                <div class="form-group" id="group-email">
+                  <label for="email" class="form-label">Email Address<span class="required-indicator">*</span></label>
+                  <input type="email" id="email" name="email" class="form-input" placeholder="Enter email address" required>
+                  <span class="field-error-message" id="error-email">This field is required.</span>
+                </div>
+
+                <!-- Password -->
+                <div class="form-group" id="group-password">
+                  <label for="password" class="form-label">Password<span class="required-indicator">*</span></label>
+                  <div class="password-input-wrapper">
+                    <input type="password" id="password" name="password" class="form-input" placeholder="Enter password" required>
+                    <button type="button" class="password-toggle-btn" aria-label="Toggle Password Visibility">
+                      <svg class="eye-icon" viewBox="0 0 24 24" width="20" height="20">
+                        <path class="eye-open" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="currentColor"/>
+                        <path class="eye-closed" d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.82l2.92 2.92C21.36 15.38 22.56 13.79 23 12c-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.47-3.3c-.63 0-1.22.12-1.77.34l1.9 1.9c.27-.03.55-.04.87-.04 1.66 0 3 1.34 3 3 0 .32-.01.6-.04.87l1.9 1.9c.22-.55.34-1.14.34-1.77 0-2.76-2.24-5-5-5z" fill="currentColor" style="display: none;"/>
+                      </svg>
+                    </button>
+                  </div>
+                  <span class="field-error-message" id="error-password">This field is required.</span>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="form-group" id="group-confirm-password">
+                  <label for="confirm-password" class="form-label">Confirm Password<span class="required-indicator">*</span></label>
+                  <div class="password-input-wrapper">
+                    <input type="password" id="confirm-password" name="confirmPassword" class="form-input" placeholder="Confirm password" required>
+                    <button type="button" class="password-toggle-btn" aria-label="Toggle Password Visibility">
+                      <svg class="eye-icon" viewBox="0 0 24 24" width="20" height="20">
+                        <path class="eye-open" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z" fill="currentColor"/>
+                        <path class="eye-closed" d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.82l2.92 2.92C21.36 15.38 22.56 13.79 23 12c-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.47-3.3c-.63 0-1.22.12-1.77.34l1.9 1.9c.27-.03.55-.04.87-.04 1.66 0 3 1.34 3 3 0 .32-.01.6-.04.87l1.9 1.9c.22-.55.34-1.14.34-1.77 0-2.76-2.24-5-5-5z" fill="currentColor" style="display: none;"/>
+                      </svg>
+                    </button>
+                  </div>
+                  <span class="field-error-message" id="error-confirm-password">This field is required.</span>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-submit-group">
+                  <button type="submit" class="btn btn-primary" id="btn-submit-user">Add User</button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Mobile Overlay for Sidebar Drawer -->
+  <div class="sidebar-overlay" id="sidebar-overlay"></div>
+
+  <!-- Vanila JS Script -->
+  <script src="js/main.js"></script>
+</body>
+</html>
