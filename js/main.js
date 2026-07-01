@@ -49,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // On mobile view, collapse acts as closing the drawer
         sidebar.classList.remove('open');
         overlay.classList.remove('open');
+        document.body.classList.remove('scroll-lock');
       } else {
         // On desktop view, toggle mini icon sidebar mode
         sidebar.classList.toggle('collapsed');
@@ -62,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
       sidebar.classList.add('open');
       sidebar.classList.remove('collapsed');
       overlay.classList.add('open');
+      document.body.classList.add('scroll-lock');
     });
   }
 
@@ -70,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
     overlay.addEventListener('click', () => {
       sidebar.classList.remove('open');
       overlay.classList.remove('open');
+      document.body.classList.remove('scroll-lock');
     });
   }
 
@@ -92,6 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.innerWidth > 768) {
       sidebar.classList.remove('open');
       if (overlay) overlay.classList.remove('open');
+      document.body.classList.remove('scroll-lock');
     }
     
     // Auto-collapse on tablet resize, expand on desktop resize

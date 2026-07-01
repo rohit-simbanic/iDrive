@@ -901,6 +901,9 @@ ul, ol {
     position: static;
     padding: 20px;
   }
+  body.scroll-lock {
+    overflow: hidden !important;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
