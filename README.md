@@ -68,6 +68,17 @@ When you are ready to prepare your code for release (uploading to a host like Ne
 
 ---
 
+## 🌐 Netlify Git Deployment Settings
+
+If deploying the project using **Netlify's Git Integration** (auto-deployment from GitHub), use the following configuration settings in the Netlify build settings dashboard:
+
+* **Base directory**: *(Leave blank)*
+* **Build command**: `npm run prod-build`
+* **Publish directory**: `.`
+* **Functions directory**: *(Leave blank)*
+
+---
+
 ## 🌟 W3C & WCAG Compliance Support
 
 This codebase adheres to strict **W3C HTML5 and WCAG (Web Content Accessibility Guidelines) specifications**:
