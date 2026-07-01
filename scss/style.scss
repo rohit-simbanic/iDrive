@@ -991,6 +991,11 @@ ul, ol {
 }
 
 @media (max-width: 768px) {
+  body {
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+
   .dashboard-container {
     position: relative;
     background-color: #ffffff; // White background on mobile view
