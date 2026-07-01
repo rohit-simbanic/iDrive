@@ -49,7 +49,7 @@ When you are finished making edits and want to deploy the prototype to a live se
 2. **What this does**:
    * Compiles your latest SASS code to CSS.
    * Automatically adds vendor compatibility prefixes (like `-webkit-` and `-moz-`) for older browsers.
-   * Compresses (minifies) the CSS, removing all comments and spaces to minimize load times.
+   * Compresses and minifies the CSS (CSSNano) and JavaScript (Terser) files, removing all comments and spaces to minimize load times and bundle sizes.
 
 ---
 
@@ -62,8 +62,8 @@ To deploy the website to production hosting (e.g., cPanel, Netlify, Vercel, or A
  ┣ 📂 css
  ┃ ┗ 📜 style.css (Compiled & minified stylesheet)
  ┣ 📂 js
- ┃ ┣ 📜 main.js   (Logic and form validation)
- ┃ ┗ 📜 sprite.js (Vector asset sprite library)
+ ┃ ┣ 📜 main.js   (Logic, validations, and menu toggles)
+ ┃ ┗ 📜 sprite.js (Optimized vector asset sprite library)
  ┗ 📜 index.html  (Main HTML structure)
 ```
 
@@ -72,6 +72,7 @@ Do **NOT** upload the following files and folders to your live web hosting serve
 * `node_modules/` (Very large development dependency folder)
 * `scss/` (SASS source files)
 * `package.json` & `package-lock.json` (NPM configuration)
-* `postcss.config.js` (PostCSS configuration)
+* `postcss.config.js` & `svgo.config.js` (PostCSS/SVGO configurations)
+* `.gitignore` (Git parameters file)
 * `Custom Size – 1.png` / `IDrive.xd` (Reference assets)
 * `INSTRUCTIONS.md` (This guide)
