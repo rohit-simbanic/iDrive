@@ -73,8 +73,8 @@ When you are ready to prepare your code for release (uploading to a host like Ne
 This project incorporates industry-standard production optimizations to ensure fast page load speeds and smooth browser execution:
 
 1. **SVG Vector Compression (SVGO)**:
-   * The raw vector assets sprite inside [js/sprite.js](js/sprite.js) was optimized using **SVGO** to strip Adobe metadata, namespace elements, and redundant coordinate paths. 
-   * **Result**: Reduced the SVG asset size from **448 KB** to only **59 KB** (an **87% size reduction**).
+   * The raw vector assets sprite inside [js/sprite.js](js/sprite.js) was optimized using **SVGO** to strip Adobe metadata and namespace elements while safely preserving all vector IDs for `<use>` references.
+   * **Result**: Reduced the SVG asset size from **448 KB** to only **64.7 KB** (an **85.4% size reduction**).
 2. **JavaScript & CSS Minification**:
    * SASS compiles stylesheet code, and **PostCSS (CSSNano)** compresses and minifies [css/style.css](css/style.css).
    * **Terser** minifies and obfuscates JavaScript files ([js/main.js](js/main.js) and [js/sprite.js](js/sprite.js)) during build, stripping code comments and spaces to minimize file transfer bytes.
@@ -107,8 +107,8 @@ This codebase adheres to strict **W3C HTML5 and WCAG (Web Content Accessibility 
 * **Screen Reader Assistance (WAI-ARIA)**: Interactive controls without visible text (like the hamburger icon) use `aria-label` tags to vocalize their actions. Accordion dropdown menus use `aria-expanded` states (`true`/`false`) to inform screen readers of their toggle position.
 * **High Color Contrast**: Contrast-compliant font coloring (like white text on dark blue sidebar background, and charcoal text on white content wrapper) matches and exceeds WCAG AA/AAA minimum contrast standards (WCAG 1.4.3).
 
-### 3. SVG Assets Loader (Local CORS Bypass)
-* SVGs are loaded dynamically through [js/sprite.js](js/sprite.js) to insert the sprite container into the DOM locally. This bypasses browser same-origin CORS security blocks, ensuring all icons render flawlessly when browsing via local folders (`file:///` protocol).
+### 3. SVG Assets Loader (Local CORS Bypass & Fallback)
+* SVGs are loaded dynamically through [js/sprite.js](js/sprite.js) using a bulletproof readyState check that executes immediately if the DOM is already parsed (ideal for fast hosting servers). This loader inserts the sprite container locally to bypass browser same-origin CORS security blocks, ensuring all icons render flawlessly when browsing via local folders (`file:///` protocol) or live CDNs.
 
 ### 4. Search Engine Privacy (Robots Exclusion)
 * **Noindex / Nofollow**: Includes `<meta name="robots" content="noindex, nofollow">` in the `<head>`.
