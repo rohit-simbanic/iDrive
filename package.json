@@ -6,8 +6,7 @@
   "scripts": {
     "build-css": "sass scss/style.scss css/style.css",
     "watch-css": "sass scss/style.scss css/style.css --watch",
-    "build-js": "terser js/main.js -o js/main.js && terser js/sprite.js -o js/sprite.js",
-    "prod-build": "npm run build-css && npm run build-js && postcss css/style.css -o css/style.css"
+    "prod-build": "npm run build-css && postcss css/style.css -o css/style.css"
   },
   "keywords": [],
   "author": "",
