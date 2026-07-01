@@ -68,6 +68,21 @@ When you are ready to prepare your code for release (uploading to a host like Ne
 
 ---
 
+## ⚡ Performance Optimizations
+
+This project incorporates industry-standard production optimizations to ensure fast page load speeds and smooth browser execution:
+
+1. **SVG Vector Compression (SVGO)**:
+   * The raw vector assets sprite inside [js/sprite.js](js/sprite.js) was optimized using **SVGO** to strip Adobe metadata, namespace elements, and redundant coordinate paths. 
+   * **Result**: Reduced the SVG asset size from **448 KB** to only **59 KB** (an **87% size reduction**).
+2. **JavaScript & CSS Minification**:
+   * SASS compiles stylesheet code, and **PostCSS (CSSNano)** compresses and minifies [css/style.css](css/style.css).
+   * **Terser** minifies and obfuscates JavaScript files ([js/main.js](js/main.js) and [js/sprite.js](js/sprite.js)) during build, stripping code comments and spaces to minimize file transfer bytes.
+3. **Window Resize Debouncing**:
+   * The browser window `resize` handler inside [js/main.js](js/main.js) is wrapped in a **debounce function**. This prevents the browser from thrashing layout calculations rapidly during window dragging, resulting in smooth transitions on tablets and desktop resizes.
+
+---
+
 ## 🌐 Netlify Git Deployment Settings
 
 If deploying the project using **Netlify's Git Integration** (auto-deployment from GitHub), use the following configuration settings in the Netlify build settings dashboard:
