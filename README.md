@@ -79,18 +79,22 @@ If deploying the project using **Netlify's Git Integration** (auto-deployment fr
 
 ---
 
-## 🌟 W3C & WCAG Compliance Support
+## 🌟 W3C & Accessibility (WCAG 2.1) Compliance
 
-This codebase adheres to strict **W3C HTML5 and WCAG (Web Content Accessibility Guidelines) specifications**:
+This codebase adheres to strict **W3C HTML5 and WCAG (Web Content Accessibility Guidelines) specifications** to ensure high-fidelity coding and standard-compliant design:
 
-1. **HTML5 Semantic Outlines**:
-   * Uses semantic wrapper elements (`<main>`, `<aside>`, `<nav>`, `<header>`, `<section>`) instead of nested unsemantic layout `<div>` containers.
-2. **Form Accessibility & Association**:
-   * All form label text elements utilize the `for` attribute pointing directly to their corresponding input `id` attributes. This enables screen readers to vocalize input contexts and expands input click focus regions.
-3. **Unique Identifiers**:
-   * Every input field, form group, button, and validation message has a globally unique `id` attribute, preventing document validation collisions.
-4. **Interactive Element Semantics**:
-   * Sidebar collapses and password toggles use native `<button>` tags rather than plain divs, making them fully keyboard-accessible (keyboard tab-index focusable, Space and Enter key triggerable).
-   * Key interactives include `aria-label` tags to state actions for assistive devices.
-5. **Dynamic SVG Loader**:
-   * SVGs are loaded dynamically through `js/sprite.js` to insert the sprite container into the DOM locally. This bypasses browser same-origin CORS security blocks, ensuring all icons render flawlessly when browsing via local folders (`file:///` protocol).
+### 1. W3C HTML5 Semantic Outlines
+* Uses structural semantic wrapper elements (`<main>`, `<aside>`, `<nav>`, `<header>`, `<section>`) instead of nested unsemantic layout `<div>` containers.
+
+### 2. Accessibility (WCAG 2.1 & WAI-ARIA)
+* **Form Accessibility & Association**: All form label text elements utilize the `for` attribute pointing directly to their corresponding input `id` attributes. This enables screen readers to vocalize input contexts and expands input click focus regions (WCAG 1.3.1).
+* **Keyboard Navigation**: All interactive elements (sidebar toggles, submenus, form fields, and password visibility eye buttons) use native `<button>` and `<a>` tags. This enables users navigating without a mouse to access the entire application using standard **Tab** and **Enter/Space** keyboard triggers (WCAG 2.1).
+* **Screen Reader Assistance (WAI-ARIA)**: Interactive controls without visible text (like the hamburger icon) use `aria-label` tags to vocalize their actions. Accordion dropdown menus use `aria-expanded` states (`true`/`false`) to inform screen readers of their toggle position.
+* **High Color Contrast**: Contrast-compliant font coloring (like white text on dark blue sidebar background, and charcoal text on white content wrapper) matches and exceeds WCAG AA/AAA minimum contrast standards (WCAG 1.4.3).
+
+### 3. SVG Assets Loader (Local CORS Bypass)
+* SVGs are loaded dynamically through [js/sprite.js](js/sprite.js) to insert the sprite container into the DOM locally. This bypasses browser same-origin CORS security blocks, ensuring all icons render flawlessly when browsing via local folders (`file:///` protocol).
+
+### 4. Search Engine Privacy (Robots Exclusion)
+* **Noindex / Nofollow**: Includes `<meta name="robots" content="noindex, nofollow">` in the `<head>`.
+* **Why it is used**: Since this page is an internal user registration and account dashboard portal, it should be protected from public crawlers. Hiding it prevents index spiders (like Googlebot) from showing private dashboard layout structures, forms, or login fields in public Google search engine results.
