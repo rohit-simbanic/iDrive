@@ -788,6 +788,9 @@ ul, ol {
   .dashboard-container {
     position: relative;
     background-color: #ffffff;
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
   }
   .sidebar {
     position: fixed;
@@ -835,6 +838,9 @@ ul, ol {
   .main-content {
     padding: 20px;
     border-radius: 0;
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
   }
   .main-header .mobile-sidebar-toggle {
     display: flex;

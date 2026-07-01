@@ -994,6 +994,9 @@ ul, ol {
   .dashboard-container {
     position: relative;
     background-color: #ffffff; // White background on mobile view
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
   }
   
   // Slide-out Drawer Sidebar on Mobile
@@ -1055,6 +1058,9 @@ ul, ol {
   .main-content {
     padding: 20px;
     border-radius: 0; // Flat layout on mobile screens
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
   }
   
 
