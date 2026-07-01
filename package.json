@@ -6,7 +6,8 @@
   "scripts": {
     "build-css": "sass scss/style.scss css/style.css",
     "watch-css": "sass scss/style.scss css/style.css --watch",
-    "prod-build": "npm run build-css && postcss css/style.css -o css/style.css"
+    "build-js": "terser js/main.js -o js/main.js && terser js/sprite.js -o js/sprite.js",
+    "prod-build": "npm run build-css && npm run build-js && postcss css/style.css -o css/style.css"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,7 @@
     "cssnano": "^8.0.2",
     "postcss": "^8.5.16",
     "postcss-cli": "^11.0.1",
-    "sass": "^1.101.0"
+    "sass": "^1.101.0",
+    "terser": "^5.48.0"
   }
 }
