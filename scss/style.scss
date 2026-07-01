@@ -49,6 +49,22 @@ $transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 $gradient-banner: linear-gradient(105deg, #bcd7ec 0%, #f3defa 100%); // Soft pastel gradient matching screenshot
 
 // ==========================================
+// Mixins
+// ==========================================
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+// ==========================================
 // Base Resets & Typography
 // ==========================================
 * {
@@ -172,9 +188,7 @@ ul, ol {
     .sidebar-toggle {
       color: $color-sidebar-text;
       padding: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include flex-center;
       border-radius: 4px;
       transition: color $transition-fast, background-color $transition-fast;
       
@@ -463,9 +477,7 @@ ul, ol {
   
   .header-action-btn {
     color: $color-text-muted;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
     position: relative;
     width: 40px;
     height: 40px;
@@ -507,9 +519,7 @@ ul, ol {
     background-color: #dd7e4d; // Warm coral tone from XD
     color: $color-text-white;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
     font-weight: 700;
     font-family: $font-header;
     font-size: 15px;
@@ -562,9 +572,7 @@ ul, ol {
   .banner-graphic {
     width: 232px;
     height: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
     flex-shrink: 0;
     
     .box-illustration-svg {
@@ -644,9 +652,7 @@ ul, ol {
     color: $color-primary;
     border: 1px solid rgba(112, 112, 112, 0.25);
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
     font-weight: 700;
     font-family: $font-header;
     font-size: 13px;
@@ -664,9 +670,7 @@ ul, ol {
   
   .step-card-graphic-wrapper {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flex-center;
     
     .step-illust-svg {
       max-width: 100%;
@@ -761,9 +765,7 @@ ul, ol {
         padding: 4px;
         color: $color-text-muted;
         cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        @include flex-center;
         transition: color $transition-fast;
         z-index: 2;
         
@@ -1052,9 +1054,7 @@ ul, ol {
 
   .main-header {
     .mobile-sidebar-toggle {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include flex-center;
       color: $color-text-muted;
       padding: 8px;
       border-radius: 4px;
