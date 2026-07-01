@@ -360,6 +360,11 @@ ul, ol {
   height: 20px;
   fill: currentColor;
 }
+.main-header .header-action-btn .header-icon-svg.gear-icon {
+  fill: none !important;
+  stroke: currentColor !important;
+  stroke-width: 1.8px;
+}
 .main-header .header-action-btn.bell-btn .header-icon-svg {
   fill: #707182;
 }
